@@ -1,0 +1,40 @@
+FROM golang:1.23-bookworm AS builder
+
+# Install build dependencies (clang for eBPF, libbpf)
+RUN apt-get update && apt-get install -y \
+    clang \
+    llvm \
+    libbpf-dev \
+    linux-headers-generic \
+    gcc-aarch64-linux-gnu \
+    gcc-x86-64-linux-gnu \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy Go modules
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Generate eBPF artifacts (requires clang)
+# We set CGO_ENABLED=1 because standard Go/eBPF interaction usually uses CGO or just pure Go with embedded ELF.
+# bpf2go uses clang to compile C -> .o, then generates Go wrapper.
+RUN go generate ./pkg/ebpf/...
+
+ARG TARGETOS
+ARG TARGETARCH
+
+# Build the binary
+# We use GOARCH=$TARGETARCH to ensure we build for the correct platform 
+# even when the builder itself is running under emulation.
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o kubesec-agent ./cmd/agent
+
+# Runtime image
+FROM gcr.io/distroless/static-debian12
+
+COPY --from=builder /app/kubesec-agent /kubesec-agent
+
+ENTRYPOINT ["/kubesec-agent"]

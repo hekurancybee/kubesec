@@ -1,0 +1,113 @@
+---
+# Example applications demonstrating KubeSec protection
+#
+# Annotation Reference:
+#   icu.systems/secure: "true"           - Enable syscall enforcement
+#   icu.systems/training-period: "24h"   - Learning period before enforcement
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+# Protected application - will learn syscalls during training, then enforce
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-nginx
+  namespace: demo
+  annotations:
+    icu.systems/secure: "true"
+    icu.systems/training-period: "5m"  # 5 minutes for demo (use "24h" in production)
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secure-nginx
+  template:
+    metadata:
+      labels:
+        app: secure-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+---
+# Unprotected application - syscalls observed but not enforced
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unprotected-nginx
+  namespace: demo
+  # No icu.systems annotations = not protected (only observed)
+  annotations:
+    icu.systems/secure: "true"
+    icu.systems/training-period: "5m"  # 5 minutes for demo (use "24h" in production)
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unprotected-nginx
+  template:
+    metadata:
+      labels:
+        app: unprotected-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+---
+# Service for testing
+apiVersion: v1
+kind: Service
+metadata:
+  name: secure-nginx
+  namespace: demo
+spec:
+  selector:
+    app: secure-nginx
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
+
+
+
+---
+# Unprotected application - syscalls observed but not enforced
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unannoted-nginx
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unannoted-nginx
+  template:
+    metadata:
+      labels:
+        app: unannoted-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"

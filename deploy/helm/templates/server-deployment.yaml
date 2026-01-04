@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-server
+  labels:
+    app: kubesec-server
+spec:
+  replicas: {{ .Values.server.replicaCount }}
+  selector:
+    matchLabels:
+      app: kubesec-server
+  template:
+    metadata:
+      labels:
+        app: kubesec-server
+    spec:
+      containers:
+        # Frontend Container (Nginx)
+        # Proxies /api -> localhost:8080 (backend)
+        - name: frontend
+          image: "{{ .Values.image.repository }}-dashboard:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+        
+        # Backend Container (Go API)
+        # Runs in Server Mode (no eBPF)
+        - name: backend
+          image: "{{ .Values.image.repository }}-agent:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/kubesec-agent"]
+          args:
+            - "-server"
+            - "-clickhouse"
+            - "{{ .Release.Name }}-clickhouse"
+          ports:
+            - name: api
+              containerPort: 8080
+          # No privileged mode needed for server!

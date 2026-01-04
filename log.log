@@ -1,0 +1,854 @@
+parallels@ubuntu-gnu-linux-24-04-3:~/Development/EBPF/kubesec$ sudo -E KUBECONFIG=/home/parallels/.kube/config ./bin/kubesec-agent --clickhouse localhost
+2025/12/30 18:41:08 KubeSec Agent - Syscall Protection
+2025/12/30 18:41:08 ===================================
+2025/12/30 18:41:08 [Store] Connected to ClickHouse at localhost:9000
+2025/12/30 18:41:08 [Engine] Starting KubeSec Agent v0.2.3 (Logging Noise Reduction)...
+2025/12/30 18:41:08 [Engine] Loaded allowlist for Deployment/demo/secure-nginx: 69 entries
+2025/12/30 18:41:08 [Engine] Loaded allowlist for Deployment/demo/unannoted-nginx: 53 entries
+2025/12/30 18:41:08 [WorkloadCache] Syncing K8s informers...
+2025/12/30 18:41:08 [Engine] DaemonSet/kube-system/kube-proxy: Workload change detected (Secure: false, DryRun: true)
+2025/12/30 18:41:08 [Engine] Deployment/demo/secure-nginx: Workload change detected (Secure: true, DryRun: false)
+2025/12/30 18:41:08 [Engine] Deployment/demo/unannoted-nginx: Workload change detected (Secure: true, DryRun: false)
+2025/12/30 18:41:08 [Engine] Deployment/demo/unprotected-nginx: Workload change detected (Secure: false, DryRun: false)
+2025/12/30 18:41:08 [Engine] Deployment/kube-system/coredns: Workload change detected (Secure: false, DryRun: false)
+2025/12/30 18:41:08 [Engine] Deployment/kubesec/clickhouse: Workload change detected (Secure: false, DryRun: false)
+2025/12/30 18:41:08 [WorkloadCache] K8s informers synced
+2025/12/30 18:41:08 [API] Dashboard API listening on :8080
+2025/12/30 18:41:08 [Engine] API server started on :8080
+2025/12/30 18:41:08 Engine started. Watching for syscalls...
+2025/12/30 18:41:08   - Workloads with icu.systems/secure: 'true' will be protected
+2025/12/30 18:41:08   - Training period from icu.systems/training-period (default: 24h)
+2025/12/30 18:41:08 
+2025/12/30 18:41:08 [Engine] Discovery worker started
+2025/12/30 18:41:09 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:09 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:41:18 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:18 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:41:28 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:28 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:41:38 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:38 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:41:48 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:48 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:41:58 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:41:58 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:08 [Engine] Loaded allowlist for Deployment/demo/secure-nginx: 69 entries
+2025/12/30 18:42:08 [Engine] Loaded allowlist for Deployment/demo/unannoted-nginx: 53 entries
+2025/12/30 18:42:08 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:08 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:08 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:08 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:18 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:18 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:28 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:28 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:38 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:38 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:48 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:48 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:42:58 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:42:58 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:08 [Engine] Loaded allowlist for Deployment/demo/secure-nginx: 69 entries
+2025/12/30 18:43:08 [Engine] Loaded allowlist for Deployment/demo/unannoted-nginx: 53 entries
+2025/12/30 18:43:08 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:43:08 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:43:09 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:09 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:18 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:43:18 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:28 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:43:28 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:35 [Engine] Deployment/kubesec/clickhouse: Workload change detected (Secure: true, DryRun: true)
+2025/12/30 18:43:35 [Engine] Monitoring: kubesec/clickhouse-65d547b59b-n69cl/clickhouse (cgroup: 18972)
+2025/12/30 18:43:35 [Engine] Monitoring: demo/secure-nginx-765944d6b9-5rbzl/nginx (cgroup: 18672)
+2025/12/30 18:43:35 [Engine] Monitoring: demo/unannoted-nginx-8597546cdb-mcs4c/nginx (cgroup: 18872)
+2025/12/30 18:43:36 [Engine] Initialized allowlist for Deployment/kubesec/clickhouse: 0 entries, 0 prefixes, training=true
+fatal error: concurrent map iteration and map write
+
+goroutine 60 [running]:
+internal/runtime/maps.fatal({0x23fcb3a?, 0x6230363562342d36?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/panic.go:1058 +0x20
+internal/runtime/maps.(*Iter).Next(0x0?)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/runtime/maps/table.go:683 +0x94
+github.com/kubesec/kubesec/pkg/engine.(*Engine).syncKernelAllowlist(0x4000a813b0, 0x4a1c, 0x40003ea190)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:615 +0xe8
+github.com/kubesec/kubesec/pkg/engine.(*Engine).discoverContainers(0x4000a813b0)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:559 +0x25c
+github.com/kubesec/kubesec/pkg/engine.(*Engine).containerDiscoveryLoop(0x4000a813b0)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:586 +0x94
+created by github.com/kubesec/kubesec/pkg/engine.(*Engine).Start in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:154 +0x1f0
+
+goroutine 1 [chan receive, 2 minutes]:
+main.main()
+	/home/parallels/Development/EBPF/kubesec/cmd/agent/main.go:52 +0x3f8
+
+goroutine 18 [select]:
+k8s.io/client-go/util/workqueue.(*delayingType[...]).waitingLoop(0x2881800, {{0x2873958, 0x40000ad3c0?}, 0x0?})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/util/workqueue/delaying_queue.go:320 +0x2a0
+created by k8s.io/client-go/util/workqueue.newDelayingQueue[...] in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/util/workqueue/delaying_queue.go:157 +0x238
+
+goroutine 19 [chan receive, 2 minutes]:
+k8s.io/client-go/transport.(*dynamicClientCert).run(0x40004890e0, 0x40000b8bd0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cert_rotation.go:151 +0x250
+created by k8s.io/client-go/transport.(*tlsTransportCache).get in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cache.go:126 +0x524
+
+goroutine 9 [sync.Cond.Wait, 2 minutes]:
+sync.runtime_notifyListWait(0x4000432690, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000432680)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+k8s.io/client-go/util/workqueue.(*Typed[...]).Get(0x2884f60)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/util/workqueue/queue.go:260 +0x8c
+k8s.io/client-go/transport.(*dynamicClientCert).processNextWorkItem(0x40004890e0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cert_rotation.go:160 +0x3c
+k8s.io/client-go/transport.(*dynamicClientCert).runWorker(...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cert_rotation.go:155
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil.func1({0x0?, 0x0?})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x24
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40000b8bd0?}, 0x0?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40000b8bd0}, 0x4000096f38, {0x28460c0, 0x400088c030}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil(0x2873958?, {0x28460c0?, 0x400088c030?}, 0x0?, 0x0?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x50
+k8s.io/apimachinery/pkg/util/wait.JitterUntil(0x4000880000, 0x3b9aca00, 0x0, 0x1, 0x40000b8bd0)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:210 +0x80
+k8s.io/apimachinery/pkg/util/wait.Until(...)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:163
+created by k8s.io/client-go/transport.(*dynamicClientCert).run in goroutine 19
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cert_rotation.go:144 +0x1a0
+
+goroutine 10 [select, 2 minutes]:
+k8s.io/apimachinery/pkg/util/wait.waitForWithContext({0x286d8e0, 0x40000b8bd0}, 0x4000095f40, 0x4000095f88)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:210 +0xb0
+k8s.io/apimachinery/pkg/util/wait.poll({0x286d8e0, 0x40000b8bd0}, 0x3c?, 0x4000095f40, 0x4000095f88)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/poll.go:260 +0x90
+k8s.io/apimachinery/pkg/util/wait.PollImmediateUntilWithContext({0x286d8e0?, 0x40000b8bd0?}, 0x360d00000000?, 0x2000000018?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/poll.go:200 +0x44
+k8s.io/apimachinery/pkg/util/wait.PollImmediateUntil(0x24079000000000?, 0x2000000015?, 0x400000200240797?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/poll.go:187 +0x40
+created by k8s.io/client-go/transport.(*dynamicClientCert).run in goroutine 19
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/transport/cert_rotation.go:146 +0x244
+
+goroutine 11 [select, 2 minutes]:
+k8s.io/apimachinery/pkg/util/wait.PollImmediateUntilWithContext.poller.func1.1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/poll.go:297 +0x150
+created by k8s.io/apimachinery/pkg/util/wait.PollImmediateUntilWithContext.poller.func1 in goroutine 10
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/poll.go:280 +0xc0
+
+goroutine 14 [select, 2 minutes]:
+github.com/ClickHouse/clickhouse-go/v2.(*connPool).runDrainPool(0x400024cc40)
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_pool.go:141 +0xa0
+created by github.com/ClickHouse/clickhouse-go/v2.newConnPool in goroutine 1
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_pool.go:34 +0x154
+
+goroutine 35 [select]:
+github.com/kubesec/kubesec/pkg/store.(*Store).flushLoop(0x4000232d20)
+	/home/parallels/Development/EBPF/kubesec/pkg/store/clickhouse.go:301 +0x110
+created by github.com/kubesec/kubesec/pkg/store.New in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/store/clickhouse.go:197 +0x8c4
+
+goroutine 25 [IO wait]:
+internal/poll.runtime_pollWait(0xf435a72b7d00, 0x72)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/netpoll.go:351 +0xa0
+internal/poll.(*pollDesc).wait(0x4000804780?, 0x4001a5e000?, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_poll_runtime.go:84 +0x28
+internal/poll.(*pollDesc).waitRead(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_poll_runtime.go:89
+internal/poll.(*FD).Read(0x4000804780, {0x4001a5e000, 0xa000, 0xa000})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_unix.go:165 +0x1fc
+net.(*netFD).Read(0x4000804780, {0x4001a5e000?, 0x4001a5e042?, 0x5?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/fd_posix.go:55 +0x28
+net.(*conn).Read(0x40004366d0, {0x4001a5e000?, 0x400082d8a8?, 0x83458?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/net.go:194 +0x34
+crypto/tls.(*atLeastReader).Read(0x40003f9020, {0x4001a5e000?, 0x400082d908?, 0x218114?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/crypto/tls/conn.go:809 +0x40
+bytes.(*Buffer).ReadFrom(0x400027beb8, {0x2845f80, 0x40003f9020})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/bytes/buffer.go:211 +0x90
+crypto/tls.(*Conn).readFromUntil(0x400027bc08, {0xf435a48da318, 0x40003f8540}, 0x400082d9b0?)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/crypto/tls/conn.go:831 +0xcc
+crypto/tls.(*Conn).readRecordOrCCS(0x400027bc08, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/crypto/tls/conn.go:629 +0x35c
+crypto/tls.(*Conn).readRecord(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/crypto/tls/conn.go:591
+crypto/tls.(*Conn).Read(0x400027bc08, {0x4000847000, 0x1000, 0x0?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/crypto/tls/conn.go:1385 +0x15c
+bufio.(*Reader).Read(0x400083f080, {0x40000da9e4, 0x9, 0x89e064?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/bufio/bufio.go:245 +0x1b0
+io.ReadAtLeast({0x2842300, 0x400083f080}, {0x40000da9e4, 0x9, 0x9}, 0x9)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+io.ReadFull(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:354
+golang.org/x/net/http2.readFrameHeader({0x40000da9e4, 0x9, 0x400082dd68?}, {0x2842300?, 0x400083f080?})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/frame.go:242 +0x58
+golang.org/x/net/http2.(*Framer).ReadFrameHeader(0x40000da9a0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/frame.go:505 +0x64
+golang.org/x/net/http2.(*Framer).ReadFrame(0x40000da9a0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/frame.go:564 +0x20
+golang.org/x/net/http2.(*clientConnReadLoop).run(0x400082df98)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2258 +0xb8
+golang.org/x/net/http2.(*ClientConn).readLoop(0x4000102fc0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2127 +0x50
+created by golang.org/x/net/http2.(*Transport).newClientConn in goroutine 24
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:880 +0xb18
+
+goroutine 36 [chan receive, 2 minutes]:
+k8s.io/apimachinery/pkg/watch.(*Broadcaster).loop(0x40003fd310)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/mux.go:268 +0x4c
+created by k8s.io/apimachinery/pkg/watch.NewLongQueueBroadcaster in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/mux.go:93 +0x114
+
+goroutine 37 [select, 2 minutes]:
+k8s.io/client-go/tools/record.(*eventBroadcasterImpl).StartEventWatcher.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/record/event.go:407 +0xc8
+created by k8s.io/client-go/tools/record.(*eventBroadcasterImpl).StartEventWatcher in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/record/event.go:404 +0xa0
+
+goroutine 38 [select, 2 minutes]:
+k8s.io/client-go/tools/record.(*eventBroadcasterImpl).StartEventWatcher.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/record/event.go:407 +0xc8
+created by k8s.io/client-go/tools/record.(*eventBroadcasterImpl).StartEventWatcher in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/record/event.go:404 +0xa0
+
+goroutine 40 [sync.Cond.Wait]:
+sync.runtime_notifyListWait(0x4000ac5d88, 0x3)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000ac5d78)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+k8s.io/client-go/tools/cache.(*RealFIFO).Pop(0x4000ac5d60, 0x4000a73b20)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/the_real_fifo.go:208 +0x74
+k8s.io/client-go/tools/cache.(*controller).processLoop(0x40008c8630, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:211 +0x64
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000097c88?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000af9db8, {0x28460c0, 0x4000a7bd70}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.JitterUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000097db8, 0x3b9aca00, 0x0, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:223 +0x88
+k8s.io/apimachinery/pkg/util/wait.UntilWithContext(...)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:172
+k8s.io/client-go/tools/cache.(*controller).RunWithContext(0x40008c8630, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:183 +0x33c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext(0x40008c8370, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:578 +0x308
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).Run(0x0?, 0x8d968?)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:526 +0x28
+k8s.io/client-go/informers.(*sharedInformerFactory).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:160 +0x60
+created by k8s.io/client-go/informers.(*sharedInformerFactory).Start in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:158 +0x1dc
+
+goroutine 41 [sync.Cond.Wait, 2 minutes]:
+sync.runtime_notifyListWait(0x4000ac5e28, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000ac5e18)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+k8s.io/client-go/tools/cache.(*RealFIFO).Pop(0x4000ac5e00, 0x4000a73de0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/the_real_fifo.go:208 +0x74
+k8s.io/client-go/tools/cache.(*controller).processLoop(0x40008c86e0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:211 +0x64
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000823c88?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000823db8, {0x28460c0, 0x4000aea060}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.JitterUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000823db8, 0x3b9aca00, 0x0, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:223 +0x88
+k8s.io/apimachinery/pkg/util/wait.UntilWithContext(...)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:172
+k8s.io/client-go/tools/cache.(*controller).RunWithContext(0x40008c86e0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:183 +0x33c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext(0x40008c8420, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:578 +0x308
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).Run(0x617000046a7?, 0x40002d1d50?)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:526 +0x28
+k8s.io/client-go/informers.(*sharedInformerFactory).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:160 +0x60
+created by k8s.io/client-go/informers.(*sharedInformerFactory).Start in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:158 +0x1dc
+
+goroutine 42 [sync.Cond.Wait, 2 minutes]:
+sync.runtime_notifyListWait(0x4000ac5ec8, 0x1)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000ac5eb8)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+k8s.io/client-go/tools/cache.(*RealFIFO).Pop(0x4000ac5ea0, 0x4000af6120)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/the_real_fifo.go:208 +0x74
+k8s.io/client-go/tools/cache.(*controller).processLoop(0x40008c8790, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:211 +0x64
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x400081ec88?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x400081edb8, {0x28460c0, 0x4000aea2d0}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.JitterUntilWithContext({0x286d8e0, 0x40004ff570}, 0x400081edb8, 0x3b9aca00, 0x0, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:223 +0x88
+k8s.io/apimachinery/pkg/util/wait.UntilWithContext(...)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:172
+k8s.io/client-go/tools/cache.(*controller).RunWithContext(0x40008c8790, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:183 +0x33c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext(0x40008c84d0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:578 +0x308
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).Run(0x100000000?, 0x100000000?)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:526 +0x28
+k8s.io/client-go/informers.(*sharedInformerFactory).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:160 +0x60
+created by k8s.io/client-go/informers.(*sharedInformerFactory).Start in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:158 +0x1dc
+
+goroutine 43 [sync.Cond.Wait, 2 minutes]:
+sync.runtime_notifyListWait(0x4000b00028, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000b00018)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+k8s.io/client-go/tools/cache.(*RealFIFO).Pop(0x4000b00000, 0x4000af63e0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/the_real_fifo.go:208 +0x74
+k8s.io/client-go/tools/cache.(*controller).processLoop(0x40008c8840, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:211 +0x64
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000af1c88?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000af1db8, {0x28460c0, 0x4000aea540}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.JitterUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000af1db8, 0x3b9aca00, 0x0, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:223 +0x88
+k8s.io/apimachinery/pkg/util/wait.UntilWithContext(...)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:172
+k8s.io/client-go/tools/cache.(*controller).RunWithContext(0x40008c8840, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:183 +0x33c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext(0x40008c8580, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:578 +0x308
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).Run(0xc04000004?, 0x15c0024163f?)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:526 +0x28
+k8s.io/client-go/informers.(*sharedInformerFactory).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:160 +0x60
+created by k8s.io/client-go/informers.(*sharedInformerFactory).Start in goroutine 1
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/informers/factory.go:158 +0x1dc
+
+goroutine 85 [chan receive]:
+k8s.io/client-go/tools/cache.(*processorListener).run(0x4000ac5ae0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1053 +0x4c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 46
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 46 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*sharedProcessor).run(0x40003fd6d0, {0x286d358, 0x40003fd9a0})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:884 +0x4c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext.(*Group).StartWithContext.func4()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 40
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 47 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:151 +0x38
+created by k8s.io/client-go/tools/cache.(*controller).RunWithContext in goroutine 40
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:150 +0xb0
+
+goroutine 48 [select]:
+k8s.io/client-go/tools/cache.handleAnyWatch({0x286d8e0, 0x40004ff570}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0, 0x4000426b90}, {0xf435a4981640, 0x4000ac5d60}, {0x28a3b88, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:894 +0x1f8
+k8s.io/client-go/tools/cache.handleWatch({0x286d8e0?, 0x40004ff570?}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0?, 0x4000426b90?}, {0xf435a4981640?, 0x4000ac5d60?}, {0x28a3b88?, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:852 +0x70
+k8s.io/client-go/tools/cache.(*Reflector).watch(0x40008fc2d0, {0x286d8e0, 0x40004ff570}, {0x284c6e0, 0x4000426b90}, 0x40002d6bd0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:542 +0x454
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync(0x40008fc2d0, {0x286d8e0, 0x40004ff570}, {0x0, 0x0})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:482 +0x12c
+k8s.io/client-go/tools/cache.(*Reflector).ListAndWatchWithContext(0x40008fc2d0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:437 +0x33c
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:360 +0x34
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil.func1({0x150023e0a1?, 0x23e0b000000090?})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x24
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000883600?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000827e98, {0x28460e0, 0x40003fd9f0}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil(0x2873958?, {0x28460e0?, 0x40003fd9f0?}, 0xff?, 0x12?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x50
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext(0x40008fc2d0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:359 +0x1ec
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.(*Group).StartWithContext.func3()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 40
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 96 [select, 2 minutes]:
+context.(*cancelCtx).propagateCancel.func2()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:514 +0x88
+created by context.(*cancelCtx).propagateCancel in goroutine 48
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:513 +0x4b8
+
+goroutine 97 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*Reflector).startResync(0x40008fc2d0, {0x286d358, 0x4000426960}, 0x40002d6bd0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:450 +0xdc
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync.func2()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:480 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 48
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 87 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).run(0x4000ac5b80)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1053 +0x4c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 68
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 68 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*sharedProcessor).run(0x40003fd720, {0x286d358, 0x40003fdb80})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:884 +0x4c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext.(*Group).StartWithContext.func4()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 41
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 69 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:151 +0x38
+created by k8s.io/client-go/tools/cache.(*controller).RunWithContext in goroutine 41
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:150 +0xb0
+
+goroutine 70 [select, 1 minutes]:
+k8s.io/client-go/tools/cache.handleAnyWatch({0x286d8e0, 0x40004ff570}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0, 0x4000426aa0}, {0xf435a4981640, 0x4000ac5e00}, {0x28a3b88, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:894 +0x1f8
+k8s.io/client-go/tools/cache.handleWatch({0x286d8e0?, 0x40004ff570?}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0?, 0x4000426aa0?}, {0xf435a4981640?, 0x4000ac5e00?}, {0x28a3b88?, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:852 +0x70
+k8s.io/client-go/tools/cache.(*Reflector).watch(0x40008fc4b0, {0x286d8e0, 0x40004ff570}, {0x284c6e0, 0x4000426aa0}, 0x40002d6540)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:542 +0x454
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync(0x40008fc4b0, {0x286d8e0, 0x40004ff570}, {0x0, 0x0})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:482 +0x12c
+k8s.io/client-go/tools/cache.(*Reflector).ListAndWatchWithContext(0x40008fc4b0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:437 +0x33c
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:360 +0x34
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil.func1({0x4000ac5e00?, 0x400023f608?})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x24
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000888600?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000829e98, {0x28460e0, 0x40003fdc70}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil(0x2873958?, {0x28460e0?, 0x40003fdc70?}, 0xff?, 0x12?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x50
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext(0x40008fc4b0, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:359 +0x1ec
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.(*Group).StartWithContext.func3()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 41
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 93 [select, 2 minutes]:
+context.(*cancelCtx).propagateCancel.func2()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:514 +0x88
+created by context.(*cancelCtx).propagateCancel in goroutine 70
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:513 +0x4b8
+
+goroutine 94 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*Reflector).startResync(0x40008fc4b0, {0x286d358, 0x40004265a0}, 0x40002d6540)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:450 +0xdc
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync.func2()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:480 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 70
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 89 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).run(0x4000ac5c20)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1053 +0x4c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 74
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 74 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*sharedProcessor).run(0x40003fd8b0, {0x286d358, 0x40003fde00})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:884 +0x4c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext.(*Group).StartWithContext.func4()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 42
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 75 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:151 +0x38
+created by k8s.io/client-go/tools/cache.(*controller).RunWithContext in goroutine 42
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:150 +0xb0
+
+goroutine 76 [select, 1 minutes]:
+k8s.io/client-go/tools/cache.handleAnyWatch({0x286d8e0, 0x40004ff570}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0, 0x40003ea910}, {0xf435a4981640, 0x4000ac5ea0}, {0x28a3b88, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:894 +0x1f8
+k8s.io/client-go/tools/cache.handleWatch({0x286d8e0?, 0x40004ff570?}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0?, 0x40003ea910?}, {0xf435a4981640?, 0x4000ac5ea0?}, {0x28a3b88?, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:852 +0x70
+k8s.io/client-go/tools/cache.(*Reflector).watch(0x40008fc690, {0x286d8e0, 0x40004ff570}, {0x284c6e0, 0x40003ea910}, 0x4000266850)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:542 +0x454
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync(0x40008fc690, {0x286d8e0, 0x40004ff570}, {0x0, 0x0})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:482 +0x12c
+k8s.io/client-go/tools/cache.(*Reflector).ListAndWatchWithContext(0x40008fc690, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:437 +0x33c
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:360 +0x34
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil.func1({0x4000ac5ea0?, 0x4000aaf908?})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x24
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000888e00?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000afde98, {0x28460e0, 0x40003fde50}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil(0x2873958?, {0x28460e0?, 0x40003fde50?}, 0xff?, 0x12?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x50
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext(0x40008fc690, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:359 +0x1ec
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.(*Group).StartWithContext.func3()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 42
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 51 [select, 2 minutes]:
+context.(*cancelCtx).propagateCancel.func2()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:514 +0x88
+created by context.(*cancelCtx).propagateCancel in goroutine 76
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:513 +0x4b8
+
+goroutine 52 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*Reflector).startResync(0x40008fc690, {0x286d358, 0x40003ea320}, 0x4000266850)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:450 +0xdc
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync.func2()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:480 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 76
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 91 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).run(0x4000ac5cc0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1053 +0x4c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 80
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 80 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*sharedProcessor).run(0x40003fd900, {0x286d358, 0x4000426140})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:884 +0x4c
+k8s.io/client-go/tools/cache.(*sharedIndexInformer).RunWithContext.(*Group).StartWithContext.func4()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 43
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 81 [chan receive, 2 minutes]:
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:151 +0x38
+created by k8s.io/client-go/tools/cache.(*controller).RunWithContext in goroutine 43
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/controller.go:150 +0xb0
+
+goroutine 82 [select, 1 minutes]:
+k8s.io/client-go/tools/cache.handleAnyWatch({0x286d8e0, 0x40004ff570}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0, 0x40003eac80}, {0xf435a4981640, 0x4000b00000}, {0x28a3b88, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:894 +0x1f8
+k8s.io/client-go/tools/cache.handleWatch({0x286d8e0?, 0x40004ff570?}, {0x0?, 0x0?, 0x3f96120?}, {0x284c6e0?, 0x40003eac80?}, {0xf435a4981640?, 0x4000b00000?}, {0x28a3b88?, ...}, ...)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:852 +0x70
+k8s.io/client-go/tools/cache.(*Reflector).watch(0x40008fc870, {0x286d8e0, 0x40004ff570}, {0x284c6e0, 0x40003eac80}, 0x4000266a10)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:542 +0x454
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync(0x40008fc870, {0x286d8e0, 0x40004ff570}, {0x0, 0x0})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:482 +0x12c
+k8s.io/client-go/tools/cache.(*Reflector).ListAndWatchWithContext(0x40008fc870, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:437 +0x33c
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext.func1()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:360 +0x34
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil.func1({0x2403bd00000000?, 0x4000000011?})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x24
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext.func1({0x286d8e0?, 0x40004ff570?}, 0x4000886600?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:255 +0x58
+k8s.io/apimachinery/pkg/util/wait.BackoffUntilWithContext({0x286d8e0, 0x40004ff570}, 0x4000affe98, {0x28460e0, 0x4000426190}, 0x1)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:256 +0xac
+k8s.io/apimachinery/pkg/util/wait.BackoffUntil(0x2873958?, {0x28460e0?, 0x4000426190?}, 0xff?, 0x12?)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/backoff.go:233 +0x50
+k8s.io/client-go/tools/cache.(*Reflector).RunWithContext(0x40008fc870, {0x286d8e0, 0x40004ff570})
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:359 +0x1ec
+k8s.io/client-go/tools/cache.(*controller).RunWithContext.(*Group).StartWithContext.func3()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:63 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 43
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 54 [select, 2 minutes]:
+context.(*cancelCtx).propagateCancel.func2()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:514 +0x88
+created by context.(*cancelCtx).propagateCancel in goroutine 82
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/context/context.go:513 +0x4b8
+
+goroutine 55 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*Reflector).startResync(0x40008fc870, {0x286d358, 0x40003ea7d0}, 0x4000266a10)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:450 +0xdc
+k8s.io/client-go/tools/cache.(*Reflector).watchWithResync.func2()
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/reflector.go:480 +0x2c
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 82
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 86 [select]:
+k8s.io/client-go/tools/cache.(*processorListener).pop(0x4000ac5ae0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1022 +0xf4
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 46
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 88 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).pop(0x4000ac5b80)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1022 +0xf4
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 68
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 90 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).pop(0x4000ac5c20)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1022 +0xf4
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 74
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 92 [select, 2 minutes]:
+k8s.io/client-go/tools/cache.(*processorListener).pop(0x4000ac5cc0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/tools/cache/shared_informer.go:1022 +0xf4
+k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1()
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:72 +0x58
+created by k8s.io/apimachinery/pkg/util/wait.(*Group).Start in goroutine 80
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/wait/wait.go:70 +0x7c
+
+goroutine 53 [select, 2 minutes]:
+golang.org/x/net/http2.(*clientStream).writeRequest(0x40003ff380, 0x4000990000, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1566 +0xa24
+golang.org/x/net/http2.(*clientStream).doRequest(0x40003ff380, 0x0?, 0x0?)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1427 +0x20
+created by golang.org/x/net/http2.(*ClientConn).roundTrip in goroutine 76
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1333 +0x3dc
+
+goroutine 95 [select, 2 minutes]:
+golang.org/x/net/http2.(*clientStream).writeRequest(0x4000b06300, 0x4000278640, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1566 +0xa24
+golang.org/x/net/http2.(*clientStream).doRequest(0x4000b06300, 0x5f74757074756f5f?, 0x5f6c616d72656874?)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1427 +0x20
+created by golang.org/x/net/http2.(*ClientConn).roundTrip in goroutine 70
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1333 +0x3dc
+
+goroutine 98 [select, 2 minutes]:
+golang.org/x/net/http2.(*clientStream).writeRequest(0x4000b06c00, 0x40002788c0, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1566 +0xa24
+golang.org/x/net/http2.(*clientStream).doRequest(0x4000b06c00, 0x656e5f6e75740072?, 0x65736f6c635f74?)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1427 +0x20
+created by golang.org/x/net/http2.(*ClientConn).roundTrip in goroutine 48
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1333 +0x3dc
+
+goroutine 56 [select, 2 minutes]:
+golang.org/x/net/http2.(*clientStream).writeRequest(0x40003ff680, 0x40009903c0, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1566 +0xa24
+golang.org/x/net/http2.(*clientStream).doRequest(0x40003ff680, 0x5f6761745f657461?, 0x5f6970730067736d?)
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1427 +0x20
+created by golang.org/x/net/http2.(*ClientConn).roundTrip in goroutine 82
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:1333 +0x3dc
+
+goroutine 57 [sync.Cond.Wait, 1 minutes]:
+sync.runtime_notifyListWait(0x40003ff3c8, 0x2)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x40003ff3b8)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+golang.org/x/net/http2.(*pipe).Read(0x40003ff3b0, {0x4001a06650, 0x4, 0x4})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/pipe.go:76 +0x104
+golang.org/x/net/http2.transportResponseBody.Read({0x4000af3cc8?}, {0x4001a06650?, 0x1fd4800?, 0x2108c20?})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2560 +0x4c
+io.ReadAtLeast({0xf435a48e0f98, 0x40003ff380}, {0x4001a06650, 0x4, 0x4}, 0x4)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+k8s.io/apimachinery/pkg/util/framer.(*lengthDelimitedFrameReader).Read(0x40009745e8, {0x4000841000, 0x400, 0x400})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/framer/framer.go:76 +0x8c
+k8s.io/apimachinery/pkg/runtime/serializer/streaming.(*decoder).Decode(0x40003ea8c0, 0x0, {0x284bce0, 0x40016eb600})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/runtime/serializer/streaming/streaming.go:77 +0x88
+k8s.io/client-go/rest/watch.(*Decoder).Decode(0x4000420540)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/rest/watch/decoder.go:49 +0x58
+k8s.io/apimachinery/pkg/watch.(*StreamWatcher).receive(0x40003ea910)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:114 +0xc4
+created by k8s.io/apimachinery/pkg/watch.NewStreamWatcherWithLogger in goroutine 76
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:85 +0x138
+
+goroutine 99 [sync.Cond.Wait, 1 minutes]:
+sync.runtime_notifyListWait(0x4000b06348, 0x2)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000b06338)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+golang.org/x/net/http2.(*pipe).Read(0x4000b06330, {0x4001a14fb8, 0x4, 0x4})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/pipe.go:76 +0x104
+golang.org/x/net/http2.transportResponseBody.Read({0x4000822cc8?}, {0x4001a14fb8?, 0x1fd4800?, 0x2108c20?})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2560 +0x4c
+io.ReadAtLeast({0xf435a48e0f98, 0x4000b06300}, {0x4001a14fb8, 0x4, 0x4}, 0x4)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+k8s.io/apimachinery/pkg/util/framer.(*lengthDelimitedFrameReader).Read(0x4000a9cd50, {0x4000b52000, 0x400, 0x400})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/framer/framer.go:76 +0x8c
+k8s.io/apimachinery/pkg/runtime/serializer/streaming.(*decoder).Decode(0x4000426a50, 0x0, {0x284bce0, 0x40009c8cc0})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/runtime/serializer/streaming/streaming.go:77 +0x88
+k8s.io/client-go/rest/watch.(*Decoder).Decode(0x40003db680)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/rest/watch/decoder.go:49 +0x58
+k8s.io/apimachinery/pkg/watch.(*StreamWatcher).receive(0x4000426aa0)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:114 +0xc4
+created by k8s.io/apimachinery/pkg/watch.NewStreamWatcherWithLogger in goroutine 70
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:85 +0x138
+
+goroutine 58 [sync.Cond.Wait, 1 minutes]:
+sync.runtime_notifyListWait(0x40003ff6c8, 0x2)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x40003ff6b8)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+golang.org/x/net/http2.(*pipe).Read(0x40003ff6b0, {0x4001a14f40, 0x4, 0x4})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/pipe.go:76 +0x104
+golang.org/x/net/http2.transportResponseBody.Read({0x400081fcc8?}, {0x4001a14f40?, 0x1fd4800?, 0x2108c20?})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2560 +0x4c
+io.ReadAtLeast({0xf435a48e0f98, 0x40003ff680}, {0x4001a14f40, 0x4, 0x4}, 0x4)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+k8s.io/apimachinery/pkg/util/framer.(*lengthDelimitedFrameReader).Read(0x4000974630, {0x4000841400, 0x400, 0x400})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/framer/framer.go:76 +0x8c
+k8s.io/apimachinery/pkg/runtime/serializer/streaming.(*decoder).Decode(0x40003eac30, 0x0, {0x284bce0, 0x40009c8c40})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/runtime/serializer/streaming/streaming.go:77 +0x88
+k8s.io/client-go/rest/watch.(*Decoder).Decode(0x40004205a0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/rest/watch/decoder.go:49 +0x58
+k8s.io/apimachinery/pkg/watch.(*StreamWatcher).receive(0x40003eac80)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:114 +0xc4
+created by k8s.io/apimachinery/pkg/watch.NewStreamWatcherWithLogger in goroutine 82
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:85 +0x138
+
+goroutine 100 [sync.Cond.Wait]:
+sync.runtime_notifyListWait(0x4000b06c48, 0x5)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sema.go:597 +0x150
+sync.(*Cond).Wait(0x4000b06c38)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/sync/cond.go:71 +0xc4
+golang.org/x/net/http2.(*pipe).Read(0x4000b06c30, {0x400096c238, 0x4, 0x4})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/pipe.go:76 +0x104
+golang.org/x/net/http2.transportResponseBody.Read({0x4001935cc8?}, {0x400096c238?, 0x1fd4800?, 0x2108c20?})
+	/home/parallels/go/pkg/mod/golang.org/x/net@v0.48.0/http2/transport.go:2560 +0x4c
+io.ReadAtLeast({0xf435a48e0f98, 0x4000b06c00}, {0x400096c238, 0x4, 0x4}, 0x4)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+k8s.io/apimachinery/pkg/util/framer.(*lengthDelimitedFrameReader).Read(0x4000a9cd98, {0x40004e4000, 0x2000, 0x2500})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/util/framer/framer.go:76 +0x8c
+k8s.io/apimachinery/pkg/runtime/serializer/streaming.(*decoder).Decode(0x4000426b40, 0x0, {0x284bce0, 0x400098c280})
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/runtime/serializer/streaming/streaming.go:77 +0x88
+k8s.io/client-go/rest/watch.(*Decoder).Decode(0x40003db6e0)
+	/home/parallels/go/pkg/mod/k8s.io/client-go@v0.34.3/rest/watch/decoder.go:49 +0x58
+k8s.io/apimachinery/pkg/watch.(*StreamWatcher).receive(0x4000426b90)
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:114 +0xc4
+created by k8s.io/apimachinery/pkg/watch.NewStreamWatcherWithLogger in goroutine 48
+	/home/parallels/go/pkg/mod/k8s.io/apimachinery@v0.34.3/pkg/watch/streamwatcher.go:85 +0x138
+
+goroutine 59 [select]:
+github.com/kubesec/kubesec/pkg/engine.(*Engine).discoveryWorker(0x4000a813b0)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:516 +0xf0
+created by github.com/kubesec/kubesec/pkg/engine.(*Engine).Start in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:147 +0x188
+
+goroutine 61 [select]:
+github.com/kubesec/kubesec/pkg/engine.(*Engine).snapshotSyncLoop(0x4000a813b0)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:669 +0xd0
+created by github.com/kubesec/kubesec/pkg/engine.(*Engine).Start in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:158 +0x23c
+
+goroutine 62 [select]:
+github.com/ClickHouse/clickhouse-go/v2.(*connect).process(0x40008fc000, {0x286d3c8, 0x40002cbb20}, 0x400150ddd0)
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_process.go:117 +0x150
+github.com/ClickHouse/clickhouse-go/v2.(*connect).exec(0x40008fc000, {0x286d3c8, 0x40002cbb20}, {0x24796f9, 0xda}, {0x40002cbc00, 0x7, 0x7})
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_exec.go:29 +0x26c
+github.com/ClickHouse/clickhouse-go/v2.(*clickhouse).Exec(0x400088cdb0, {0x286d3c8, 0x40002cbb20}, {0x24796f9, 0xda}, {0x40002cbc00, 0x7, 0x7})
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/clickhouse.go:168 +0x1d4
+github.com/kubesec/kubesec/pkg/store.(*Store).AddToAllowlist(0x4000232d20, {0x4001514880, 0x1d}, {0x23b5134, 0x2}, {0x23bc405, 0x6}, {0x40014fc500, 0x7b}, 0x0, ...)
+	/home/parallels/Development/EBPF/kubesec/pkg/store/clickhouse.go:649 +0x2d4
+github.com/kubesec/kubesec/pkg/engine.(*Engine).handleSyscallEvent(0x4000a813b0, 0x400152b760)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:298 +0x580
+github.com/kubesec/kubesec/pkg/engine.(*Engine).eventLoop(0x4000a813b0)
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:220 +0x90
+created by github.com/kubesec/kubesec/pkg/engine.(*Engine).Start in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/engine/engine.go:162 +0x288
+
+goroutine 63 [IO wait]:
+internal/poll.runtime_pollWait(0xf435a72b7ad0, 0x72)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/netpoll.go:351 +0xa0
+internal/poll.(*pollDesc).wait(0x4000805f00?, 0x2c5ec?, 0x0)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_poll_runtime.go:84 +0x28
+internal/poll.(*pollDesc).waitRead(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_poll_runtime.go:89
+internal/poll.(*FD).Accept(0x4000805f00)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_unix.go:620 +0x24c
+net.(*netFD).accept(0x4000805f00)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/fd_unix.go:172 +0x28
+net.(*TCPListener).accept(0x400098c600)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/tcpsock_posix.go:159 +0x24
+net.(*TCPListener).Accept(0x400098c600)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/tcpsock.go:380 +0x2c
+net/http.(*Server).Serve(0x4000960f00, {0x286ba20, 0x400098c600})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/http/server.go:3424 +0x290
+net/http.(*Server).ListenAndServe(0x4000960f00)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/http/server.go:3350 +0x84
+github.com/kubesec/kubesec/pkg/api.(*Server).Start.func1()
+	/home/parallels/Development/EBPF/kubesec/pkg/api/server.go:178 +0x24
+created by github.com/kubesec/kubesec/pkg/api.(*Server).Start in goroutine 1
+	/home/parallels/Development/EBPF/kubesec/pkg/api/server.go:177 +0x190
+
+goroutine 65 [syscall, 2 minutes]:
+os/signal.signal_recv()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/runtime/sigqueue.go:152 +0x30
+os/signal.loop()
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/os/signal/signal_unix.go:23 +0x1c
+created by os/signal.Notify.func1.1 in goroutine 1
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/os/signal/signal.go:152 +0x28
+
+goroutine 2290 [runnable]:
+syscall.Syscall(0x3f, 0x13, 0x4000a22000, 0x20000)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/syscall/syscall_linux.go:73 +0x20
+syscall.read(0x4000894700?, {0x4000a22000?, 0x400192b400?, 0x716d4?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/syscall/zsyscall_linux_arm64.go:736 +0x40
+syscall.Read(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/syscall/syscall_unix.go:183
+internal/poll.ignoringEINTRIO(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_unix.go:745
+internal/poll.(*FD).Read(0x4000894700, {0x4000a22000, 0x20000, 0x20000})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/internal/poll/fd_unix.go:161 +0x220
+net.(*netFD).Read(0x4000894700, {0x4000a22000?, 0x1ef2?, 0xed158?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/fd_posix.go:55 +0x28
+net.(*conn).Read(0x400007a178, {0x4000a22000?, 0x20b8ac0?, 0xf435a72b7cf8?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/net/net.go:194 +0x34
+bufio.(*Reader).Read(0x40001fbe00, {0x4000a64180, 0x1, 0x2540ba1c1?})
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/bufio/bufio.go:245 +0x1b0
+github.com/ClickHouse/ch-go/proto.(*Reader).Read(0x0?, {0x4000a64180?, 0xc24d21b538ee1248?, 0x254de23987?})
+	/home/parallels/go/pkg/mod/github.com/!click!house/ch-go@v0.69.0/proto/reader.go:52 +0x2c
+io.ReadAtLeast({0x28430a0, 0x400088d410}, {0x4000a64180, 0x1, 0x7a}, 0x1)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:335 +0xa0
+io.ReadFull(...)
+	/home/parallels/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.11.linux-arm64/src/io/io.go:354
+github.com/ClickHouse/ch-go/proto.(*Reader).ReadFull(0x400192b698?, {0x4000a64180?, 0x400007a178?, 0x68d33b4ecc?})
+	/home/parallels/go/pkg/mod/github.com/!click!house/ch-go@v0.69.0/proto/reader.go:61 +0x3c
+github.com/ClickHouse/ch-go/proto.(*Reader).readFull(0x40008fc000?, 0x286d3c8?)
+	/home/parallels/go/pkg/mod/github.com/!click!house/ch-go@v0.69.0/proto/reader.go:69 +0x98
+github.com/ClickHouse/ch-go/proto.(*Reader).ReadByte(...)
+	/home/parallels/go/pkg/mod/github.com/!click!house/ch-go@v0.69.0/proto/reader.go:35
+github.com/ClickHouse/clickhouse-go/v2.(*connect).processImpl(0x40008fc000, {0x286d3c8, 0x40002cbb20}, 0x400150ddd0)
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_process.go:142 +0x12c
+github.com/ClickHouse/clickhouse-go/v2.(*connect).process.func1()
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_process.go:107 +0x3c
+created by github.com/ClickHouse/clickhouse-go/v2.(*connect).process in goroutine 62
+	/home/parallels/go/pkg/mod/github.com/!click!house/clickhouse-go/v2@v2.42.0/conn_process.go:106 +0xf8

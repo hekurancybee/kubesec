@@ -1,0 +1,39 @@
+# Default values for kubesec.
+
+image:
+  # Container registry prefix
+  repository: ghcr.io/hekurancybee/kubesec
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+server:
+  replicaCount: 1
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations: {}
+    hosts:
+      - host: kubesec.cingerr.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+clickhouse:
+  enabled: true
+  persistence:
+    enabled: false # Alpha mode: ephemeral
+
+agent:
+  mode: "agent" # DaemonSet mode
+  # Resources for eBPF agent
+  resources: 
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Global settings
+global:
+  clusterName: "production-alpha"

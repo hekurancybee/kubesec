@@ -1,0 +1,169 @@
+---
+# ClickHouse Deployment for KubeSec
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubesec
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-init
+  namespace: kubesec
+data:
+  init.sql: |
+    -- Syscall events table (audit trail for all syscalls)
+    CREATE TABLE IF NOT EXISTS syscall_events (
+        timestamp DateTime64(3),
+        namespace LowCardinality(String),
+        pod_name String,
+        container LowCardinality(String),
+        workload_key LowCardinality(String),
+        pid UInt32,
+        syscall_nr UInt32,
+        syscall_name LowCardinality(String),
+        argument String,
+        comm String,
+        cgroup_id UInt64,
+        node_name LowCardinality(String),
+        action LowCardinality(String)  -- 'observed', 'learned', 'allowed', 'blocked'
+    ) ENGINE = MergeTree()
+    PARTITION BY toYYYYMMDD(timestamp)
+    ORDER BY (workload_key, syscall_name, argument, timestamp)
+    TTL timestamp + INTERVAL 30 DAY;
+
+    -- Syscall allowlist table (per-workload learned syscalls and patterns)
+    CREATE TABLE IF NOT EXISTS syscall_allowlist (
+        workload_key LowCardinality(String),
+        template_hash String,
+        syscall_name LowCardinality(String),
+        argument String,
+        is_prefix UInt8 DEFAULT 0,
+        training_started DateTime64(3),
+        training_period_seconds UInt32,
+        first_seen DateTime64(3),
+        last_seen DateTime64(3)
+    ) ENGINE = ReplacingMergeTree(last_seen)
+    ORDER BY (workload_key, template_hash, syscall_name, argument, is_prefix);
+
+    -- View: Unique syscalls per workload
+    CREATE VIEW IF NOT EXISTS workload_syscalls AS
+    SELECT 
+        workload_key,
+        syscall_name,
+        argument,
+        count() as call_count,
+        min(timestamp) as first_seen,
+        max(timestamp) as last_seen
+    FROM syscall_events
+    GROUP BY workload_key, syscall_name, argument
+    ORDER BY workload_key, call_count DESC;
+
+    -- View: Blocked syscalls summary
+    CREATE VIEW IF NOT EXISTS blocked_syscalls AS
+    SELECT 
+        timestamp,
+        workload_key,
+        namespace,
+        pod_name,
+        syscall_name,
+        argument,
+        comm
+    FROM syscall_events
+    WHERE action = 'blocked'
+    ORDER BY timestamp DESC;
+
+    -- View: Training progress per workload
+    CREATE VIEW IF NOT EXISTS training_progress AS
+    SELECT 
+        workload_key,
+        template_hash,
+        min(training_started) as training_started,
+        any(training_period_seconds) as training_period_seconds,
+        count(DISTINCT syscall_name || ':' || argument) as learned_count,
+        min(first_seen) as first_activity,
+        max(last_seen) as last_activity
+    FROM syscall_allowlist FINAL
+    GROUP BY workload_key, template_hash
+    ORDER BY workload_key;
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clickhouse-data
+  namespace: kubesec
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickhouse
+  namespace: kubesec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clickhouse
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+    spec:
+      containers:
+      - name: clickhouse
+        image: clickhouse/clickhouse-server:24.8
+        ports:
+        - containerPort: 8123
+          name: http
+        - containerPort: 9000
+          name: native
+        env:
+        - name: CLICKHOUSE_USER
+          value: "kubesec"
+        - name: CLICKHOUSE_PASSWORD
+          value: "kubesec123"
+        - name: CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT
+          value: "1"
+        - name: CLICKHOUSE_DB
+          value: "kubesec"
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/clickhouse
+        - name: init-scripts
+          mountPath: /docker-entrypoint-initdb.d
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: clickhouse-data
+      - name: init-scripts
+        configMap:
+          name: clickhouse-init
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clickhouse
+  namespace: kubesec
+spec:
+  selector:
+    app: clickhouse
+  ports:
+  - name: http
+    port: 8123
+    targetPort: 8123
+  - name: native
+    port: 9000
+    targetPort: 9000
+  type: ClusterIP

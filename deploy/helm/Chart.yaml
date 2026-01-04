@@ -1,0 +1,9 @@
+apiVersion: v2
+name: kubesec
+description: A Helm chart for Kubesec eBPF Security Agent
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+dependencies:
+  # We can optionally add clickhouse as dependency, but for Alpha we might embed a simple deployment manifest
+  # to avoid subchart complexity for the user.
