@@ -1,16 +1,12 @@
 FROM golang:1.24-bookworm AS builder
 
 # Install build dependencies (clang for eBPF, libbpf)
-RUN dpkg --add-architecture arm64 && \
-    apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     clang \
     llvm \
     libbpf-dev \
-    linux-headers-generic \
     linux-libc-dev-arm64-cross \
     linux-libc-dev-amd64-cross \
-    gcc-aarch64-linux-gnu \
-    gcc-x86-64-linux-gnu \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
