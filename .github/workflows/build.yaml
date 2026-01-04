@@ -23,6 +23,9 @@ jobs:
         component: [agent, dashboard]
 
     steps:
+      - name: Fix git permissions
+        run: git config --global --add safe.directory /github/workspace
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:

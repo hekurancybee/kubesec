@@ -1,8 +1,8 @@
 // Package ebpf provides the eBPF syscall tracer
 package ebpf
 
-//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc clang -cflags "-O2 -g -Wall -I/usr/include" -target arm64 syscallTracer ../../bpf/syscall_tracer.bpf.c
-//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc clang -cflags "-O2 -g -Wall -I/usr/include" -target amd64 syscallTracer ../../bpf/syscall_tracer.bpf.c
+//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc clang -cflags "-O2 -g -Wall -I/usr/include -I/usr/include/aarch64-linux-gnu -I/usr/aarch64-linux-gnu/include" -target arm64 syscallTracer ../../bpf/syscall_tracer.bpf.c
+//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc clang -cflags "-O2 -g -Wall -I/usr/include -I/usr/include/x86_64-linux-gnu -I/usr/x86_64-linux-gnu/include" -target amd64 syscallTracer ../../bpf/syscall_tracer.bpf.c
 
 import (
 	"bytes"
