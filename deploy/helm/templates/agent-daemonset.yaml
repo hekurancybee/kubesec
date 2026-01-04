@@ -25,6 +25,11 @@ spec:
           args:
             - "-clickhouse"
             - "{{ .Release.Name }}-clickhouse"
+          env:
+            - name: CLICKHOUSE_USER
+              value: kubesec
+            - name: CLICKHOUSE_PASSWORD
+              value: kubesec123
           securityContext:
             privileged: true
           volumeMounts:

@@ -840,7 +840,7 @@ func (s *Store) GetDetections(limit int, offset int, windowMinutes int, search s
 		query = `
 			SELECT 
 				max(toString(timestamp) || workload_key || syscall_name) as id,
-				max(timestamp) as timestamp, namespace, '' as pod_name, workload_key, syscall_name, argument, comm, action,
+				max(timestamp) as event_time, namespace, '' as pod_name, workload_key, syscall_name, argument, comm, action,
 				count() as count,
 				max(timestamp) as last_seen
 			FROM syscall_events
@@ -851,7 +851,7 @@ func (s *Store) GetDetections(limit int, offset int, windowMinutes int, search s
 		query = `
 			SELECT 
 				toString(timestamp) || workload_key || syscall_name as id,
-				timestamp, namespace, pod_name, workload_key, syscall_name, argument, comm, action,
+				timestamp as event_time, namespace, pod_name, workload_key, syscall_name, argument, comm, action,
 				1 as count,
 				timestamp as last_seen
 			FROM syscall_events
@@ -877,7 +877,7 @@ func (s *Store) GetDetections(limit int, offset int, windowMinutes int, search s
 		query += ` GROUP BY namespace, workload_key, syscall_name, argument, comm, action `
 	}
 
-	query += ` ORDER BY timestamp DESC LIMIT ? OFFSET ?`
+	query += ` ORDER BY event_time DESC LIMIT ? OFFSET ?`
 	args = append(args, limit, offset)
 
 	rows, err := s.conn.Query(ctx, query, args...)

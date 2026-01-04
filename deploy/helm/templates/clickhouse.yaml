@@ -25,6 +25,10 @@ spec:
              # Allow empty password for Alpha
             - name: CLICKHOUSE_DB
               value: kubesec
+            - name: CLICKHOUSE_USER
+              value: kubesec
+            - name: CLICKHOUSE_PASSWORD
+              value: kubesec123
           volumeMounts:
             #- name: storage
             #  mountPath: /var/lib/clickhouse
