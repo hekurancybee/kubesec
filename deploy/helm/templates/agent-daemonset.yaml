@@ -16,6 +16,7 @@ spec:
       hostNetwork: true
       hostPID: true
       dnsPolicy: ClusterFirstWithHostNet
+      serviceAccountName: {{ .Release.Name }}-agent
       containers:
         - name: agent
           image: "{{ .Values.image.repository }}-agent:{{ .Values.image.tag }}"
